@@ -1,0 +1,19 @@
+.budget-entry {
+  display: flex;
+  width: 50%;
+  padding: 10px;
+}
+
+.budget-entry-amount {
+  flex: 0 0 3em;
+  background-color: green;
+  color: white;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.budget-entry-name {
+  flex: 4;
+  display: flex;
+  align-items: center;
+}
