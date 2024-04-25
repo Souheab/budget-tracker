@@ -6,6 +6,7 @@ import FloatingButton from "./FloatingButton";
 import AppData from "../objects/AppData";
 import { useState } from "react";
 import BudgetEntryObj from "../objects/BudgetEntryObj";
+import CurrentBudgetInfo from "./CurrentBudgetInfo";
 
 function App() {
   const [dateString] = useState(new Date().toDateString());
@@ -22,6 +23,10 @@ function App() {
           budgetEntryArrayCopy.push(new BudgetEntryObj(itemName, itemPrice));
           setBudgetEntryArray(budgetEntryArrayCopy);
         }}
+      />
+      <CurrentBudgetInfo
+        totalBudget={200}
+        budgetEntryArray={budgetEntryArray}
       />
       <BudgetEntryList
         onDelete={(id: number) => {

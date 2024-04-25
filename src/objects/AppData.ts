@@ -50,8 +50,8 @@ class AppData {
   static getAppData(): AppData {
     const dateBudgetEntryMapString =
       window.localStorage.getItem(localStorageKey);
-    if (dateBudgetEntryMapString == null) {
-      let appData = new AppData();
+    if (dateBudgetEntryMapString === null) {
+      const appData = new AppData();
       appData.updateLocalStorage();
       return appData;
     }
