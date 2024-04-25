@@ -8,7 +8,7 @@ class AppData {
   constructor(map?: Map<string, Array<BudgetEntryObj>>) {
     if (typeof map === "undefined") {
       this.dateBudgetEntryMap = new Map<string, Array<BudgetEntryObj>>([
-        ["first", new Array<BudgetEntryObj>(new BudgetEntryObj("hi", 3))],
+        ["test", new Array<BudgetEntryObj>(new BudgetEntryObj("testing", 0))],
       ]);
     } else {
       this.dateBudgetEntryMap = map!;

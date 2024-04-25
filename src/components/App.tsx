@@ -23,7 +23,15 @@ function App() {
           setBudgetEntryArray(budgetEntryArrayCopy);
         }}
       />
-      <BudgetEntryList budgetEntryArray={budgetEntryArray} />
+      <BudgetEntryList
+        onDelete={(id: number) => {
+          const newArray = budgetEntryArray.filter(
+            (budgetEntryObj) => budgetEntryObj.id != id,
+          );
+          setBudgetEntryArray(newArray);
+        }}
+        budgetEntryArray={budgetEntryArray}
+      />
       <FloatingButton
         className="add-floating-button"
         text="+"

@@ -1,16 +1,25 @@
+import BudgetEntryObj from "../objects/BudgetEntryObj";
 import "./BudgetEntry.css";
 
 interface BudgetEntryProps {
-  name: string;
-  amount: number;
+  budgetEntryObj: BudgetEntryObj;
+  onDeleteButtonClick: (id: number) => void;
 }
 
 function BudgetEntry(props: BudgetEntryProps) {
   return (
-    <div className="budget-entry">
-      <div className="budget-entry-name">{props.name}</div>
-      <div className="budget-entry-amount">$ {props.amount}</div>
-    </div>
+    <li className="budget-entry" key={props.budgetEntryObj.id}>
+      <div className="budget-entry-name">{props.budgetEntryObj.name}</div>
+      <div className="budget-entry-amount">$ {props.budgetEntryObj.amount}</div>
+      <button
+        className="budget-entry-delete-button"
+        onClick={() => {
+          props.onDeleteButtonClick(props.budgetEntryObj.id);
+        }}
+      >
+        D
+      </button>
+    </li>
   );
 }
 
