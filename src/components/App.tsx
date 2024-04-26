@@ -7,12 +7,20 @@ import AppData from "../objects/AppData";
 import { useState } from "react";
 import BudgetEntryObj from "../objects/BudgetEntryObj";
 import CurrentBudgetInfo from "./CurrentBudgetInfo";
+import AppSettings from "../objects/AppSettings";
+import DateSelector from "./DateSelector";
 
 function App() {
   const [dateString] = useState(new Date().toDateString());
   const [budgetEntryArray, setBudgetEntryArray] = useState(
     AppData.getAppData().getBudgetEntryArray(dateString),
   );
+  const [appSettings] = useState(AppSettings.getAppSettings());
+
+  function updateBudgetEntryArray(budgetEntryArray: Array<BudgetEntryObj>) {
+    setBudgetEntryArray(budgetEntryArray);
+    AppData.getAppData().writeBudgetEntryArray(dateString, budgetEntryArray);
+  }
 
   return (
     <>
@@ -21,11 +29,12 @@ function App() {
         onFormSubmit={(itemName: string, itemPrice: number) => {
           const budgetEntryArrayCopy = [...budgetEntryArray];
           budgetEntryArrayCopy.push(new BudgetEntryObj(itemName, itemPrice));
-          setBudgetEntryArray(budgetEntryArrayCopy);
+          updateBudgetEntryArray(budgetEntryArrayCopy);
         }}
       />
+      <DateSelector dateString={dateString} />
       <CurrentBudgetInfo
-        totalBudget={200}
+        totalBudget={appSettings.weeklyBudget}
         budgetEntryArray={budgetEntryArray}
       />
       <BudgetEntryList
@@ -33,7 +42,7 @@ function App() {
           const newArray = budgetEntryArray.filter(
             (budgetEntryObj) => budgetEntryObj.id != id,
           );
-          setBudgetEntryArray(newArray);
+          updateBudgetEntryArray(newArray);
         }}
         budgetEntryArray={budgetEntryArray}
       />
