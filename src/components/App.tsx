@@ -9,17 +9,18 @@ import BudgetEntryObj from "../objects/BudgetEntryObj";
 import CurrentBudgetInfo from "./CurrentBudgetInfo";
 import AppSettings from "../objects/AppSettings";
 import DateSelector from "./DateSelector";
+import BudgetEntryListObj from "../objects/BudgetEntryListObj";
 
 function App() {
   const [dateString] = useState(new Date().toDateString());
-  const [budgetEntryArray, setBudgetEntryArray] = useState(
-    AppData.getBudgetEntryArray(dateString),
+  const [budgetEntryList, setBudgetEntryList] = useState(
+    AppData.getBudgetEntryList(dateString),
   );
   const [appSettings] = useState(AppSettings.getAppSettings());
 
-  function updateBudgetEntryArray(budgetEntryArray: Array<BudgetEntryObj>) {
-    setBudgetEntryArray(budgetEntryArray);
-    AppData.writeBudgetEntryArray(dateString, budgetEntryArray);
+  function updateBudgetEntryList(budgetEntryList: BudgetEntryListObj) {
+    setBudgetEntryList(budgetEntryList);
+    AppData.writeBudgetEntryList(dateString, budgetEntryList);
   }
 
   return (
@@ -27,24 +28,28 @@ function App() {
       <Header />
       <AddModal
         onFormSubmit={(itemName: string, itemPrice: number) => {
-          const budgetEntryArrayCopy = [...budgetEntryArray];
-          budgetEntryArrayCopy.push(new BudgetEntryObj(itemName, itemPrice));
-          updateBudgetEntryArray(budgetEntryArrayCopy);
+          const budgetEntryListCopy = budgetEntryList.clone();
+          budgetEntryListCopy.push(new BudgetEntryObj(itemName, itemPrice));
+          updateBudgetEntryList(budgetEntryListCopy);
         }}
       />
       <DateSelector dateString={dateString} />
       <CurrentBudgetInfo
         totalBudget={appSettings.weeklyBudget}
-        budgetEntryArray={budgetEntryArray}
+        totalMoneySpent={budgetEntryList.totalMoneySpent}
       />
       <BudgetEntryList
         onDelete={(id: number) => {
-          const newArray = budgetEntryArray.filter(
-            (budgetEntryObj) => budgetEntryObj.id != id,
-          );
-          updateBudgetEntryArray(newArray);
+          const newBudgetEntryList = new BudgetEntryListObj();
+          budgetEntryList.budgetEntryArray.forEach((budgetEntryObj) => {
+            if (budgetEntryObj.id != id) {
+              newBudgetEntryList.push(budgetEntryObj);
+            }
+          });
+
+          updateBudgetEntryList(newBudgetEntryList);
         }}
-        budgetEntryArray={budgetEntryArray}
+        budgetEntryList={budgetEntryList}
       />
       <FloatingButton
         className="add-floating-button"

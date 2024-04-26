@@ -1,27 +1,37 @@
 import BudgetEntryObj from "../objects/BudgetEntryObj.ts";
+import BudgetEntryListObj from "./BudgetEntryListObj.ts";
 
 const localStorageKeyPrefix = "budgetEntryObjArray ";
 
 abstract class AppData {
-  static writeBudgetEntryArray(
+  static writeBudgetEntryList(
     date: string,
-    budgetEntryArray: Array<BudgetEntryObj>,
+    budgetEntryList: BudgetEntryListObj,
   ) {
     const key = localStorageKeyPrefix + date;
-    window.localStorage.setItem(key, JSON.stringify(budgetEntryArray));
+    window.localStorage.setItem(key, JSON.stringify(budgetEntryList));
   }
 
-  static getBudgetEntryArray(date: string): Array<BudgetEntryObj> {
+  static getBudgetEntryList(date: string): BudgetEntryListObj {
     const key = localStorageKeyPrefix + date;
-    const budgetEntryArrayString = window.localStorage.getItem(key);
-    if (budgetEntryArrayString === null) {
-      return new Array<BudgetEntryObj>();
+    const budgetEntryListString = window.localStorage.getItem(key);
+    if (budgetEntryListString === null) {
+      return new BudgetEntryListObj();
     }
-    const budgetEntryArray: Array<BudgetEntryObj> = JSON.parse(
-      budgetEntryArrayString,
+    const budgetEntryListJSON: BudgetEntryListObj = JSON.parse(
+      budgetEntryListString,
     );
 
-    return budgetEntryArray;
+    // Revive the list
+    const budgetEntryList = new BudgetEntryListObj();
+    budgetEntryListJSON.budgetEntryArray.forEach((budgetEntryObj) => {
+      budgetEntryList.push(
+        new BudgetEntryObj(budgetEntryObj.name, budgetEntryObj.amount),
+      );
+    });
+    budgetEntryList.totalMoneySpent = budgetEntryListJSON.totalMoneySpent;
+
+    return budgetEntryList;
   }
 }
 

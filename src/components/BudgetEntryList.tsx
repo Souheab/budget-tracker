@@ -1,19 +1,22 @@
 import BudgetEntry from "./BudgetEntry";
-import BudgetEntryObj from "../objects/BudgetEntryObj";
 import "./BudgetEntryList.css";
+import BudgetEntryListObj from "../objects/BudgetEntryListObj";
+
 interface BudgetEntryListProps {
-  budgetEntryArray: Array<BudgetEntryObj>;
+  budgetEntryList: BudgetEntryListObj;
   onDelete: (id: number) => void;
 }
 
 function BudgetEntryList(props: BudgetEntryListProps) {
-  const budgetEntryItems = props.budgetEntryArray.map((budgetEntryObj) => (
-    <BudgetEntry
-      key={budgetEntryObj.id}
-      budgetEntryObj={budgetEntryObj}
-      onDeleteButtonClick={props.onDelete}
-    />
-  ));
+  const budgetEntryItems = props.budgetEntryList.budgetEntryArray.map(
+    (budgetEntryObj) => (
+      <BudgetEntry
+        key={budgetEntryObj.id}
+        budgetEntryObj={budgetEntryObj}
+        onDeleteButtonClick={props.onDelete}
+      />
+    ),
+  );
 
   return <ul className="budget-entry-list">{budgetEntryItems}</ul>;
 }
