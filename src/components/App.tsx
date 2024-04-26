@@ -13,13 +13,13 @@ import DateSelector from "./DateSelector";
 function App() {
   const [dateString] = useState(new Date().toDateString());
   const [budgetEntryArray, setBudgetEntryArray] = useState(
-    AppData.getAppData().getBudgetEntryArray(dateString),
+    AppData.getBudgetEntryArray(dateString),
   );
   const [appSettings] = useState(AppSettings.getAppSettings());
 
   function updateBudgetEntryArray(budgetEntryArray: Array<BudgetEntryObj>) {
     setBudgetEntryArray(budgetEntryArray);
-    AppData.getAppData().writeBudgetEntryArray(dateString, budgetEntryArray);
+    AppData.writeBudgetEntryArray(dateString, budgetEntryArray);
   }
 
   return (

@@ -1,65 +1,27 @@
 import BudgetEntryObj from "../objects/BudgetEntryObj.ts";
 
-const localStorageKey = "budgetTrackerAppData";
+const localStorageKeyPrefix = "budgetEntryObjArray ";
 
-class AppData {
-  dateBudgetEntryMap: Map<string, Array<BudgetEntryObj>>;
-
-  constructor(map?: Map<string, Array<BudgetEntryObj>>) {
-    if (typeof map === "undefined") {
-      this.dateBudgetEntryMap = new Map<string, Array<BudgetEntryObj>>([
-        ["test", new Array<BudgetEntryObj>(new BudgetEntryObj("testing", 0))],
-      ]);
-    } else {
-      this.dateBudgetEntryMap = map!;
-    }
+abstract class AppData {
+  static writeBudgetEntryArray(
+    date: string,
+    budgetEntryArray: Array<BudgetEntryObj>,
+  ) {
+    const key = localStorageKeyPrefix + date;
+    window.localStorage.setItem(key, JSON.stringify(budgetEntryArray));
   }
 
-  updateLocalStorage() {
-    window.localStorage.setItem(
-      localStorageKey,
-      JSON.stringify(Array.from(this.dateBudgetEntryMap)),
+  static getBudgetEntryArray(date: string): Array<BudgetEntryObj> {
+    const key = localStorageKeyPrefix + date;
+    const budgetEntryArrayString = window.localStorage.getItem(key);
+    if (budgetEntryArrayString === null) {
+      return new Array<BudgetEntryObj>();
+    }
+    const budgetEntryArray: Array<BudgetEntryObj> = JSON.parse(
+      budgetEntryArrayString,
     );
-  }
 
-  addBudgetEntryObj(budetEntryObj: BudgetEntryObj, date: string) {
-    if (!this.dateBudgetEntryMap.has(date)) {
-      this.dateBudgetEntryMap.set(date, new Array<BudgetEntryObj>());
-    } else {
-      const arr = this.dateBudgetEntryMap.get(date)!;
-      arr.push(budetEntryObj);
-    }
-  }
-
-  getBudgetEntryArray(date: string): Array<BudgetEntryObj> {
-    if (!this.dateBudgetEntryMap.has(date)) {
-      const array = new Array<BudgetEntryObj>();
-      this.dateBudgetEntryMap.set(date, array);
-      return array;
-    }
-
-    const array = this.dateBudgetEntryMap.get(date)!;
-    return array;
-  }
-
-  writeBudgetEntryArray(date: string, budgetEntryArray: Array<BudgetEntryObj>) {
-    this.dateBudgetEntryMap.set(date, budgetEntryArray);
-    this.updateLocalStorage();
-  }
-
-  static getAppData(): AppData {
-    const dateBudgetEntryMapString =
-      window.localStorage.getItem(localStorageKey);
-    if (dateBudgetEntryMapString === null) {
-      const appData = new AppData();
-      appData.updateLocalStorage();
-      return appData;
-    }
-    const appDataMap = new Map<string, Array<BudgetEntryObj>>(
-      JSON.parse(dateBudgetEntryMapString),
-    );
-    const appData = new AppData(appDataMap);
-    return appData;
+    return budgetEntryArray;
   }
 }
 
