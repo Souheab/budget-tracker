@@ -12,7 +12,7 @@ import DateSelector from "./DateSelector";
 import BudgetEntryListObj from "../objects/BudgetEntryListObj";
 
 function App() {
-  const [dateString] = useState(new Date().toDateString());
+  const [dateString, setDateString] = useState(new Date().toDateString());
   const [budgetEntryList, setBudgetEntryList] = useState(
     AppData.getBudgetEntryList(dateString),
   );
@@ -27,13 +27,20 @@ function App() {
     <>
       <Header />
       <AddModal
-        onFormSubmit={(itemName: string, itemPrice: number) => {
+        onSubmit={(itemName: string, itemPrice: number) => {
           const budgetEntryListCopy = budgetEntryList.clone();
           budgetEntryListCopy.push(new BudgetEntryObj(itemName, itemPrice));
           updateBudgetEntryList(budgetEntryListCopy);
         }}
       />
-      <DateSelector dateString={dateString} />
+      <DateSelector
+        dateString={dateString}
+        onChange={(date) => {
+          const newDateString = date.toDateString();
+          setDateString(newDateString);
+          setBudgetEntryList(AppData.getBudgetEntryList(newDateString));
+        }}
+      />
       <CurrentBudgetInfo
         totalBudget={appSettings.weeklyBudget}
         totalMoneySpent={budgetEntryList.totalMoneySpent}

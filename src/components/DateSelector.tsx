@@ -3,6 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 interface DateSelectorProps {
   dateString: string;
+  onChange: (date: Date) => void;
 }
 
 function DateSelector(props: DateSelectorProps) {
@@ -10,7 +11,11 @@ function DateSelector(props: DateSelectorProps) {
     <div className="date-selector">
       <DatePicker
         selected={new Date(props.dateString)}
-        onChange={(_, __) => {}}
+        onChange={(date) => {
+          if (date !== null) {
+            props.onChange(date);
+          }
+        }}
       />
     </div>
   );

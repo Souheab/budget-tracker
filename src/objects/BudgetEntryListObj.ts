@@ -11,7 +11,7 @@ export default class BudgetEntryListObj {
 
   push(budgetEntryObj: BudgetEntryObj) {
     this.budgetEntryArray.push(budgetEntryObj);
-    this.totalMoneySpent += budgetEntryObj.amount;
+    this.totalMoneySpent += +budgetEntryObj.amount;
   }
 
   clone(): BudgetEntryListObj {
