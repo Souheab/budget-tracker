@@ -5,7 +5,7 @@ interface AddModalProps {
 }
 
 export default function AddModal(props: AddModalProps) {
-  let onSubmit = (event: any) => {
+  const onSubmit = (event: any) => {
     const itemName: string = event.target.itemName.value;
     const itemPrice: number = event.target.itemPrice.value;
     const budgetEntryObj = new BudgetEntryObj(itemName, itemPrice);

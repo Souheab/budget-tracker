@@ -10,13 +10,14 @@ import CurrentBudgetInfo from "./CurrentBudgetInfo";
 import AppSettings from "../objects/AppSettings";
 import DateSelector from "./DateSelector";
 import BudgetEntryListObj from "../objects/BudgetEntryListObj";
+import SettingsModal from "./SettingsModal";
 
 export default function App() {
   const [dateString, setDateString] = useState(new Date().toDateString());
   const [budgetEntryList, setBudgetEntryList] = useState(
     AppData.getBudgetEntryList(dateString),
   );
-  const [appSettings] = useState(AppSettings.getAppSettings());
+  const [appSettings, setAppSettings] = useState(AppSettings.getAppSettings());
 
   function updateBudgetEntryList(budgetEntryList: BudgetEntryListObj) {
     setBudgetEntryList(budgetEntryList);
@@ -33,6 +34,12 @@ export default function App() {
           updateBudgetEntryList(budgetEntryListCopy);
         }}
       />
+      <SettingsModal
+        appSettings={appSettings}
+        onSubmit={(appSettings: AppSettings) => {
+          setAppSettings(appSettings);
+        }}
+      />
       <DateSelector
         dateString={dateString}
         onChange={(date) => {
@@ -42,10 +49,11 @@ export default function App() {
         }}
       />
       <CurrentBudgetInfo
-        totalBudget={appSettings.weeklyBudget}
+        totalBudget={appSettings.dailyBudget}
         totalMoneySpent={budgetEntryList.totalMoneySpent}
       />
       <BudgetEntryList
+        currencyString={appSettings.currencyString}
         onDelete={(id: number) => {
           const newBudgetEntryList = new BudgetEntryListObj();
           budgetEntryList.budgetEntryArray.forEach((budgetEntryObj) => {
@@ -63,6 +71,16 @@ export default function App() {
         text="+"
         onClick={() => {
           const modal = document.querySelector(".add-modal");
+          if (modal !== null) {
+            (modal as any).showModal();
+          }
+        }}
+      />
+      <FloatingButton
+        className="settings-floating-button"
+        text="S"
+        onClick={() => {
+          const modal = document.querySelector(".settings-modal");
           if (modal !== null) {
             (modal as any).showModal();
           }

@@ -5,6 +5,7 @@ import BudgetEntryListObj from "../objects/BudgetEntryListObj";
 interface BudgetEntryListProps {
   budgetEntryList: BudgetEntryListObj;
   onDelete: (id: number) => void;
+  currencyString: string;
 }
 
 export default function BudgetEntryList(props: BudgetEntryListProps) {
@@ -12,6 +13,7 @@ export default function BudgetEntryList(props: BudgetEntryListProps) {
     (budgetEntryObj) => (
       <BudgetEntry
         key={budgetEntryObj.id}
+        currencyString={props.currencyString}
         budgetEntryObj={budgetEntryObj}
         onDeleteButtonClick={props.onDelete}
       />
