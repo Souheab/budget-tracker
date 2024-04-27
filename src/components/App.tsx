@@ -11,7 +11,7 @@ import AppSettings from "../objects/AppSettings";
 import DateSelector from "./DateSelector";
 import BudgetEntryListObj from "../objects/BudgetEntryListObj";
 
-function App() {
+export default function App() {
   const [dateString, setDateString] = useState(new Date().toDateString());
   const [budgetEntryList, setBudgetEntryList] = useState(
     AppData.getBudgetEntryList(dateString),
@@ -27,9 +27,9 @@ function App() {
     <>
       <Header />
       <AddModal
-        onSubmit={(itemName: string, itemPrice: number) => {
+        onSubmit={(budgetEntryObj: BudgetEntryObj) => {
           const budgetEntryListCopy = budgetEntryList.clone();
-          budgetEntryListCopy.push(new BudgetEntryObj(itemName, itemPrice));
+          budgetEntryListCopy.push(budgetEntryObj);
           updateBudgetEntryList(budgetEntryListCopy);
         }}
       />
@@ -71,5 +71,3 @@ function App() {
     </>
   );
 }
-
-export default App;

@@ -3,7 +3,7 @@ import BudgetEntryListObj from "./BudgetEntryListObj.ts";
 
 const localStorageKeyPrefix = "budgetEntryObjArray ";
 
-abstract class AppData {
+export default abstract class AppData {
   static writeBudgetEntryList(
     date: string,
     budgetEntryList: BudgetEntryListObj,
@@ -34,5 +34,3 @@ abstract class AppData {
     return budgetEntryList;
   }
 }
-
-export default AppData;

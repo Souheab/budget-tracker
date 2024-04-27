@@ -7,7 +7,7 @@ interface BudgetEntryListProps {
   onDelete: (id: number) => void;
 }
 
-function BudgetEntryList(props: BudgetEntryListProps) {
+export default function BudgetEntryList(props: BudgetEntryListProps) {
   const budgetEntryItems = props.budgetEntryList.budgetEntryArray.map(
     (budgetEntryObj) => (
       <BudgetEntry
@@ -20,5 +20,3 @@ function BudgetEntryList(props: BudgetEntryListProps) {
 
   return <ul className="budget-entry-list">{budgetEntryItems}</ul>;
 }
-
-export default BudgetEntryList;

@@ -6,7 +6,7 @@ interface BudgetEntryProps {
   onDeleteButtonClick: (id: number) => void;
 }
 
-function BudgetEntry(props: BudgetEntryProps) {
+export default function BudgetEntry(props: BudgetEntryProps) {
   return (
     <li className="budget-entry" key={props.budgetEntryObj.id}>
       <div className="budget-entry-name">{props.budgetEntryObj.name}</div>
@@ -22,5 +22,3 @@ function BudgetEntry(props: BudgetEntryProps) {
     </li>
   );
 }
-
-export default BudgetEntry;

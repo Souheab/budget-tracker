@@ -6,7 +6,7 @@ interface FloatingButtonProps {
   onClick: () => void;
 }
 
-function FloatingButton(props: FloatingButtonProps) {
+export default function FloatingButton(props: FloatingButtonProps) {
   return (
     <button
       className={"floating-button " + props.className}
@@ -16,5 +16,3 @@ function FloatingButton(props: FloatingButtonProps) {
     </button>
   );
 }
-
-export default FloatingButton;

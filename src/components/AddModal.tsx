@@ -1,12 +1,16 @@
+import BudgetEntryObj from "../objects/BudgetEntryObj";
+
 interface AddModalProps {
-  onSubmit: (itemName: string, itemPrice: number) => void;
+  onSubmit: (budgetEntryObj: BudgetEntryObj) => void;
 }
 
-function AddModal(props: AddModalProps) {
+export default function AddModal(props: AddModalProps) {
   let onSubmit = (event: any) => {
-    let itemName: string = event.target.itemName.value;
-    let itemPrice: number = event.target.itemPrice.value;
-    props.onSubmit(itemName, itemPrice);
+    const itemName: string = event.target.itemName.value;
+    const itemPrice: number = event.target.itemPrice.value;
+    const budgetEntryObj = new BudgetEntryObj(itemName, itemPrice);
+
+    props.onSubmit(budgetEntryObj);
   };
 
   return (
@@ -25,5 +29,3 @@ function AddModal(props: AddModalProps) {
     </dialog>
   );
 }
-
-export default AddModal;

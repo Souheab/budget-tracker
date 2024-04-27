@@ -3,7 +3,7 @@ interface CurrentBudgetInfoProps {
   totalMoneySpent: number;
 }
 
-function CurrentBudgetInfo(props: CurrentBudgetInfoProps) {
+export default function CurrentBudgetInfo(props: CurrentBudgetInfoProps) {
   return (
     <div className="current-budget-info-div">
       <div className="total-budget">{props.totalBudget}</div>
@@ -11,5 +11,3 @@ function CurrentBudgetInfo(props: CurrentBudgetInfoProps) {
     </div>
   );
 }
-
-export default CurrentBudgetInfo;

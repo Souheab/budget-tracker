@@ -6,7 +6,7 @@ interface DateSelectorProps {
   onChange: (date: Date) => void;
 }
 
-function DateSelector(props: DateSelectorProps) {
+export default function DateSelector(props: DateSelectorProps) {
   return (
     <div className="date-selector">
       <DatePicker
@@ -20,5 +20,3 @@ function DateSelector(props: DateSelectorProps) {
     </div>
   );
 }
-
-export default DateSelector;

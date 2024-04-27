@@ -1,7 +1,7 @@
 const localStorageKey = "budgetTrackerAppSettings";
 const defaultWeeklyBudget = 100;
 
-class AppSettings {
+export default class AppSettings {
   weeklyBudget: number;
 
   constructor(weeklyBudget: number) {
@@ -25,5 +25,3 @@ class AppSettings {
     return appSettings;
   }
 }
-
-export default AppSettings;

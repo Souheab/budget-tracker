@@ -1,4 +1,4 @@
-class BudgetEntryObj {
+export default class BudgetEntryObj {
   private static idCounter: number = 0;
   id: number;
   name: string;
@@ -12,5 +12,3 @@ class BudgetEntryObj {
     BudgetEntryObj.idCounter++;
   }
 }
-
-export default BudgetEntryObj;
