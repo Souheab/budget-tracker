@@ -5,8 +5,7 @@
 }
 
 .budget-entry-amount {
-  flex: 0 0 3em;
-  background-color: green;
+  flex: 1 1 5em;
   color: white;
   border-radius: 20px;
   padding: 5px;
@@ -16,4 +15,12 @@
   flex: 4;
   display: flex;
   align-items: center;
+}
+
+.green-bg {
+  background-color: green;
+}
+
+.red-bg {
+  background-color: red
 }

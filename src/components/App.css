@@ -1,8 +1,12 @@
+.money-image {
+  width: 200px;
+  margin: 30px;
+}
+
 .site-main-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100vw;
   height: 100vh;
 }
@@ -16,14 +20,17 @@
   padding: 10px;
 }
 
-.add-floating-button {
+.button-box {
   position: fixed;
   bottom: 5px;
   right: 5px;
 }
 
+.add-floating-button {
+  background-color: royalblue;
+  color: white
+}
+
 .settings-floating-button {
-  position: fixed;
-  bottom: 5px;
-  left: 5px
+  margin-right: 10px;
 }

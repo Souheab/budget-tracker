@@ -1,9 +1,9 @@
 .header-component {
-  background-color: lightgrey;
   text-align: center;
   padding: 20px;
 }
 
 .header-component > h1 {
   margin: 0;
+  font-weight: 400;
 }

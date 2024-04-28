@@ -11,6 +11,7 @@ import AppSettings from "../objects/AppSettings";
 import DateSelector from "./DateSelector";
 import BudgetEntryListObj from "../objects/BudgetEntryListObj";
 import SettingsModal from "./SettingsModal";
+import twemojiMoneySvg from "../assets/twemoji-money-bag.svg";
 
 export default function App() {
   const [dateString, setDateString] = useState(new Date().toDateString());
@@ -26,7 +27,6 @@ export default function App() {
 
   return (
     <>
-      <Header />
       <AddModal
         onSubmit={(budgetEntryObj: BudgetEntryObj) => {
           const budgetEntryListCopy = budgetEntryList.clone();
@@ -41,6 +41,8 @@ export default function App() {
         }}
       />
       <div className="site-main-box">
+        <Header />
+        <img src={twemojiMoneySvg} className="money-image" />
         <div className="app-main-box">
           <DateSelector
             dateString={dateString}
@@ -71,26 +73,28 @@ export default function App() {
           />
         </div>
       </div>
-      <FloatingButton
-        className="add-floating-button"
-        text="+"
-        onClick={() => {
-          const modal = document.querySelector(".add-modal");
-          if (modal !== null) {
-            (modal as HTMLDialogElement).showModal();
-          }
-        }}
-      />
-      <FloatingButton
-        className="settings-floating-button"
-        text="S"
-        onClick={() => {
-          const modal = document.querySelector(".settings-modal");
-          if (modal !== null) {
-            (modal as HTMLDialogElement).showModal();
-          }
-        }}
-      />
+      <div className="button-box">
+        <FloatingButton
+          className="settings-floating-button"
+          text="S"
+          onClick={() => {
+            const modal = document.querySelector(".settings-modal");
+            if (modal !== null) {
+              (modal as HTMLDialogElement).showModal();
+            }
+          }}
+        />
+        <FloatingButton
+          className="add-floating-button"
+          text="+"
+          onClick={() => {
+            const modal = document.querySelector(".add-modal");
+            if (modal !== null) {
+              (modal as HTMLDialogElement).showModal();
+            }
+          }}
+        />
+      </div>
     </>
   );
 }
