@@ -2,7 +2,6 @@ import "./App.css";
 import BudgetEntryList from "./BudgetEntryList";
 import Header from "./Header";
 import AddModal from "./AddModal";
-import FloatingButton from "./FloatingButton";
 import AppData from "../objects/AppData";
 import { useState } from "react";
 import BudgetEntryObj from "../objects/BudgetEntryObj";
@@ -12,6 +11,7 @@ import DateSelector from "./DateSelector";
 import BudgetEntryListObj from "../objects/BudgetEntryListObj";
 import SettingsModal from "./SettingsModal";
 import twemojiMoneySvg from "../assets/twemoji-money-bag.svg";
+import settingsSvg from "../assets/setting-line-icon.svg";
 
 export default function App() {
   const [dateString, setDateString] = useState(new Date().toDateString());
@@ -73,28 +73,28 @@ export default function App() {
           />
         </div>
       </div>
-      <div className="button-box">
-        <FloatingButton
-          className="settings-floating-button"
-          text="S"
-          onClick={() => {
-            const modal = document.querySelector(".settings-modal");
-            if (modal !== null) {
-              (modal as HTMLDialogElement).showModal();
-            }
-          }}
-        />
-        <FloatingButton
-          className="add-floating-button"
-          text="+"
-          onClick={() => {
-            const modal = document.querySelector(".add-modal");
-            if (modal !== null) {
-              (modal as HTMLDialogElement).showModal();
-            }
-          }}
-        />
-      </div>
+      <img
+        className="settings-button"
+        alt="Settings"
+        src={settingsSvg}
+        onClick={() => {
+          const modal = document.querySelector(".settings-modal");
+          if (modal !== null) {
+            (modal as HTMLDialogElement).showModal();
+          }
+        }}
+      />
+      <button
+        className="add-button floating-button"
+        onClick={() => {
+          const modal = document.querySelector(".add-modal");
+          if (modal !== null) {
+            (modal as HTMLDialogElement).showModal();
+          }
+        }}
+      >
+        +
+      </button>
     </>
   );
 }

@@ -1,3 +1,9 @@
+
+.settings-button:hover {
+  opacity:1;
+  cursor: pointer;
+}
+
 .money-image {
   width: 200px;
   margin: 30px;
@@ -20,15 +26,34 @@
   padding: 10px;
 }
 
-.button-box {
+.add-button {
+  background-color: royalblue;
+  color: white;
   position: fixed;
   bottom: 5px;
   right: 5px;
 }
 
-.add-floating-button {
-  background-color: royalblue;
-  color: white
+.settings-button {
+  width: 60px;
+  height: 60px;
+  opacity: 0.6;
+  position: fixed;
+  bottom: 5px;
+  left: 5px;
+}
+
+.floating-button {
+  font-size: 40px;
+  font-weight: 300;
+  border: none;
+  border-radius: 10px;
+  width: 65px;
+  height: 65px;
+}
+
+.floating-button:hover {
+  background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
 }
 
 .settings-floating-button {
