@@ -1,4 +1,5 @@
 import BudgetEntryObj from "../objects/BudgetEntryObj";
+import CloseDialogButton from "./CloseDialogButton";
 
 interface AddModalProps {
   onSubmit: (budgetEntryObj: BudgetEntryObj) => void;
@@ -13,8 +14,11 @@ export default function AddModal(props: AddModalProps) {
     props.onSubmit(budgetEntryObj);
   };
 
+  const dialogClass = "add-modal";
+
   return (
-    <dialog className="add-modal">
+    <dialog className={dialogClass}>
+      <CloseDialogButton dialogClass={dialogClass} />
       <form method="dialog" onSubmit={onSubmit}>
         <label>
           Add Item:

@@ -1,3 +1,21 @@
+.site-main-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.app-main-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 1px gray;
+  border-radius: 10px;
+  padding: 10px;
+}
+
 .add-floating-button {
   position: fixed;
   bottom: 5px;

@@ -1,7 +1,8 @@
 .budget-entry-list {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  flex-direction: column
+  flex-direction: column;
+  height: 300px;
+  width: 100%;
+  overflow-y: auto;
 }

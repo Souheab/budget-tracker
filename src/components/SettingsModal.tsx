@@ -1,4 +1,5 @@
 import AppSettings from "../objects/AppSettings";
+import CloseDialogButton from "./CloseDialogButton";
 
 interface SettingModalProps {
   appSettings: AppSettings;
@@ -14,8 +15,11 @@ export default function SettingsModal(props: SettingModalProps) {
     props.onSubmit(appSettings);
   };
 
+  const dialogClass = "settings-modal";
+
   return (
-    <dialog className="settings-modal">
+    <dialog className={dialogClass}>
+      <CloseDialogButton dialogClass={dialogClass} />
       <form method="dialog" className="settings-modal" onSubmit={onSubmit}>
         <label>
           Daily Budget

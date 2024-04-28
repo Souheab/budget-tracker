@@ -1,0 +1,20 @@
+.current-budget-info {
+  display: flex;
+}
+
+.budget-box {
+  border: 1px solid gray;
+  border-radius: 2px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.total-budget {
+  color: green;
+}
+
+.available-budget {
+  color: red;
+}
+
+
