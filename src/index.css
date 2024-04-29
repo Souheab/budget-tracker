@@ -13,3 +13,12 @@ body {
 button:hover {
   cursor: pointer;
 }
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 100%;               
+  background-color:gray;
+  height: 2px;
+}

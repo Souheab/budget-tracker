@@ -5,7 +5,6 @@ import AddModal from "./AddModal";
 import AppData from "../objects/AppData";
 import { useState } from "react";
 import BudgetEntryObj from "../objects/BudgetEntryObj";
-import CurrentBudgetInfo from "./CurrentBudgetInfo";
 import AppSettings from "../objects/AppSettings";
 import DateSelector from "./DateSelector";
 import BudgetEntryListObj from "../objects/BudgetEntryListObj";
@@ -43,34 +42,39 @@ export default function App() {
       <div className="site-main-box">
         <Header />
         <img src={twemojiMoneySvg} className="money-image" />
-        <div className="app-main-box">
-          <DateSelector
-            dateString={dateString}
-            onChange={(date) => {
-              const newDateString = date.toDateString();
-              setDateString(newDateString);
-              setBudgetEntryList(AppData.getBudgetEntryList(newDateString));
-            }}
-          />
-          <CurrentBudgetInfo
-            totalBudget={appSettings.dailyBudget}
-            totalMoneySpent={budgetEntryList.totalMoneySpent}
-            currencyString={appSettings.currencyString}
-          />
-          <BudgetEntryList
-            currencyString={appSettings.currencyString}
-            onDelete={(id: number) => {
-              const newBudgetEntryList = new BudgetEntryListObj();
-              budgetEntryList.budgetEntryArray.forEach((budgetEntryObj) => {
-                if (budgetEntryObj.id != id) {
-                  newBudgetEntryList.push(budgetEntryObj);
-                }
-              });
+        <DateSelector
+          dateString={dateString}
+          onChange={(date) => {
+            const newDateString = date.toDateString();
+            setDateString(newDateString);
+            setBudgetEntryList(AppData.getBudgetEntryList(newDateString));
+          }}
+        />
+        <BudgetEntryList
+          currencyString={appSettings.currencyString}
+          onDelete={(id: number) => {
+            const newBudgetEntryList = new BudgetEntryListObj();
+            budgetEntryList.budgetEntryArray.forEach((budgetEntryObj) => {
+              if (budgetEntryObj.id != id) {
+                newBudgetEntryList.push(budgetEntryObj);
+              }
+            });
 
-              updateBudgetEntryList(newBudgetEntryList);
-            }}
-            budgetEntryList={budgetEntryList}
-          />
+            updateBudgetEntryList(newBudgetEntryList);
+          }}
+          budgetEntryList={budgetEntryList}
+        />
+        <hr className="budget-info-hr" />
+        <div className="budget-info-grid">
+          <div>Budget Spent:</div>
+          <div>{-budgetEntryList.totalMoneySpent}</div>
+          <div>Total Budget:</div>
+          <div>+{appSettings.dailyBudget}</div>
+        </div>
+        <hr className="budget-info-hr" />
+        <div className="budget-info-grid">
+          <div>Budget Left:</div>
+          <div>{appSettings.dailyBudget - budgetEntryList.totalMoneySpent}</div>
         </div>
       </div>
       <img

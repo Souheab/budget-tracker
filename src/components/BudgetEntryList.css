@@ -1,8 +1,28 @@
 .budget-entry-list {
+  display: grid;
+  width: 50%;
+  grid-template-columns: 1fr auto;
+  grid-gap: 10px;
+}
+
+.budget-entry-name-and-delete-button {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 300px;
-  width: 100%;
-  overflow-y: auto;
+  flex-direction: row;
+}
+
+.budget-entry-delete-button {
+  display: none;
+  width: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: red;
+}
+
+.budget-entry-delete-button > img {
+  max-width: 70%;
+  filter: invert(100%);
+}
+
+.budget-entry-name-and-delete-button:hover > .budget-entry-delete-button {
+  display: block;
 }

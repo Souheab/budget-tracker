@@ -20,5 +20,5 @@ export default function BudgetEntryList(props: BudgetEntryListProps) {
     ),
   );
 
-  return <ul className="budget-entry-list">{budgetEntryItems}</ul>;
+  return <div className="budget-entry-list">{budgetEntryItems}</div>;
 }
