@@ -20,15 +20,11 @@ export default function AddModal(props: AddModalProps) {
     <dialog className={dialogClass}>
       <CloseDialogButton dialogClass={dialogClass} />
       <form method="dialog" onSubmit={onSubmit}>
-        <label>
-          Add Item:
-          <input type="text" name="itemName" required />
-        </label>
-        <label>
-          Item Price:
-          <input type="number" name="itemPrice" />
-        </label>
-        <button>Add</button>
+        <label>Item Name:</label>
+        <input type="text" name="itemName" required />
+        <label>Item Price:</label>
+        <input type="number" name="itemPrice" />
+        <button className="form-button">Add</button>
       </form>
     </dialog>
   );

@@ -21,21 +21,20 @@ export default function SettingsModal(props: SettingModalProps) {
     <dialog className={dialogClass}>
       <CloseDialogButton dialogClass={dialogClass} />
       <form method="dialog" className="settings-modal" onSubmit={onSubmit}>
-        <label>
-          Daily Budget
-          <input
-            name="dailyBudgetInput"
-            type="number"
-            defaultValue={props.appSettings.dailyBudget}
-          />
-        </label>
-        <label>
-          <input
-            name="currencyStringInput"
-            type="text"
-            defaultValue={props.appSettings.currencyString}
-          />
-        </label>
+        <label>Daily Budget:</label>
+
+        <input
+          name="dailyBudgetInput"
+          type="number"
+          defaultValue={props.appSettings.dailyBudget}
+        />
+        <label>Currency String:</label>
+
+        <input
+          name="currencyStringInput"
+          type="text"
+          defaultValue={props.appSettings.currencyString}
+        />
         <button>Save Settings</button>
       </form>
     </dialog>

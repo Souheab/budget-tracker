@@ -1,3 +1,5 @@
+import "./CloseDialogButton.css";
+
 interface CloseDialogButtonProps {
   dialogClass: string;
 }
@@ -8,5 +10,9 @@ export default function CloseDialogButton(props: CloseDialogButtonProps) {
     (modal as HTMLDialogElement).close();
   };
 
-  return <button onClick={onClick}>X</button>;
+  return (
+    <button className="close-dialog-button" onClick={onClick}>
+      x
+    </button>
+  );
 }

@@ -22,3 +22,26 @@ hr {
   background-color:gray;
   height: 2px;
 }
+
+dialog {
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+form {
+  display: grid;
+  padding-top: 1em;
+  grid-gap: 10px;
+}
+
+input {
+  border-style: solid;
+  border-color: gray;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+form button {
+  font-weight: 300;
+}

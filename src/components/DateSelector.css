@@ -1,0 +1,15 @@
+.date-picker input {
+  font-weight: 300;
+  font-size: 1rem;
+  border-radius: 1px;
+  text-align: center;
+  border: none;
+  color: #111111;
+  border-bottom: solid gray 1px;
+}
+
+
+.date-picker input {
+  cursor: pointer;
+}
+
